@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define MAX_PER_LINE 4096
+#define MAX_PER_LINE 1024
 #define PAIR 2
 
 int main() {
@@ -14,8 +14,8 @@ int main() {
     FILE *puzzle_input = fopen("../puzzle_inputs/pid4.txt", "r");
     while(fgets(line_buffer, MAX_PER_LINE, puzzle_input) != NULL) {
         sscanf(line_buffer, "%d-%d,%d-%d", &min[0], &max[0], &min[1], &max[1]);
-        if(min[0] >= min[1] && max[0] <= max[1]) score = score + 1;
-        else if (min[0] <= min[1] && max[0] >= max[1]) score = score + 1;
+        if(max[0] >= min[1] && min[0] <= max[1]) score += 1;
+        else if(min[0] <= max[1] && max[0] >= min[1]) score += 1;
     }
     printf("total score: %d\n", score);
 }
